@@ -22,7 +22,7 @@ import csv
 class App:
     # Csv file content:
     # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
-    column_names = ["L:Measurement", "L:Angle", "R:Measurement", "R:Angle"]
+    column_names = ["L_Measurement", "L_Angle", "R_Measurement", "R_Angle"]
     time_values = []
     row_L_measurement = []
     row_L_angle = []
@@ -31,13 +31,13 @@ class App:
     file_count = 0
 
     def __init__(self):
-        self.file_count = input("How many files do you want to read? ")
+        self.file_count = int(input("How many files do you want to read? "))
         self.read_all_csv()
 
 
     def read_all_csv(self):
         i = 1
-        while i <= int(self.file_count):
+        while i <= self.file_count:
             self.read_csv(i)
             i += 1
             print("All files are read")
@@ -68,15 +68,18 @@ class App:
 
 
     def sketch(self):  # sketch csv
+        print("Scatterplot Initialized")
+        index = 1
+        while index <= self.file_count:
+            plt.scatter(self.time_values, self.row_L_measurement)
+            plt.xlabel('Time')
+            plt.ylabel(self.column_names[index])
+            plot_name = str(index) + "-" + self.column_names[index] + ".png"
+            plt.savefig(plot_name)
+            print(plot_name + " is saved")
+            index += 1
 
-        #results = sm.OLS(self.row_1, sm.add_constant(self.time_values)).fit()
 
-        #print("X size:", len(self.row[0]), "Y size:", len(self.row[1]))
-
-        plt.scatter(self.time_values, self.row_L_measurement)
-        plt.xlabel('Time')
-        plt.ylabel('Measurements')
-        plt.show()
 
 
 
