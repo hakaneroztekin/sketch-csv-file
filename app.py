@@ -22,6 +22,7 @@ import csv
 class App:
     # Csv file content:
     # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
+    column_names = ["L:Measurement", "L:Angle", "R:Measurement", "R:Angle"]
     time_values = []
     row_L_measurement = []
     row_L_angle = []
@@ -54,7 +55,9 @@ class App:
                     #print(f'\t time:{row[0]}  Lcap: {row[1]} Ldeg: {row[2]}.')
                     self.time_values.append(row[0])
                     self.row_L_measurement.append(row[1])
-
+                    self.row_L_angle.append(row[3])
+                    self.row_R_measurement.append(row[4])
+                    self.row_R_angle.append(row[6])
                     line_count += 1
             print(f'Processed {line_count} lines.')
 
