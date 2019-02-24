@@ -43,6 +43,7 @@ class App:
             print("All files are read")
 
     def read_csv(self, i):  # read csv
+        zero_time = 0 # the starting time value; will be used to normalize the time values
         source = "csv_files"
         file_name = "measurement" + str(i) + ".csv"
         full_address = source + "/" + file_name
@@ -53,13 +54,15 @@ class App:
             line_count = 0
 
             for row in csv_reader:
-                    #print(f'\t time:{row[0]}  Lcap: {row[1]} Ldeg: {row[2]}.')
-                    self.time_values.append(row[0])
-                    self.row_L_measurement.append(row[1])
-                    self.row_L_angle.append(row[3])
-                    self.row_R_measurement.append(row[4])
-                    self.row_R_angle.append(row[6])
-                    line_count += 1
+                if line_count == 0:
+                    zero_time = int(row[0])
+                #print(f'\t time:{row[0]}  Lcap: {row[1]} Ldeg: {row[2]}.')
+                self.time_values.append(int(row[0]) - zero_time)  # normalize the time values
+                self.row_L_measurement.append(row[1])
+                self.row_L_angle.append(row[3])
+                self.row_R_measurement.append(row[4])
+                self.row_R_angle.append(row[6])
+                line_count += 1
             print(f'Processed {line_count} lines.')
 
             print("The file will be sketched.")
@@ -77,7 +80,7 @@ class App:
         #plt.ylim(min_value,max_value)
         plt.plot(self.time_values, self.row_L_measurement)
 
-        plt.xlabel('Time')
+        plt.xlabel('Time(ms)')
         plt.ylabel("Measurements")
         plot_name = str(index) + "-measurement.png"
         plt.savefig(plot_name)
