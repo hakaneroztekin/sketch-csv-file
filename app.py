@@ -20,14 +20,14 @@ from bs4 import BeautifulSoup
 import csv
 
 class App:
+    # Csv file content:
+    # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
     row = []
+    column = ["Time", "L:Measurement", "L:ConvertedCap", "L:Angle", "R:Measurement", "R:ConvertedCap", "R:Angle"]
 
     def __init__(self):
-        # Csv file content:
-        # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
-
         self.read_all_csv()
-        # sketch()
+
 
     def read_all_csv(self):
         input_val = input("How many files do you want to read? ")
