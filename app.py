@@ -20,7 +20,6 @@ from bs4 import BeautifulSoup
 import csv
 
 class App:
-    column = []
     row = []
 
     def __init__(self):
@@ -49,14 +48,12 @@ class App:
             line_count = 0
 
             for row in csv_reader:
-                if line_count == 0:
-                    #print(f'Column names are {", ".join(row)}')
-                    line_count += 1
-                else:
                     #print(f'\t time:{row[0]}  Lcap: {row[1]} Ldeg: {row[2]}.')
                     self.row.append(row)
                     line_count += 1
             print(f'Processed {line_count} lines.')
+
+            print("The file will be sketched.")
 
 
 
