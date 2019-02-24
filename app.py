@@ -74,25 +74,28 @@ class App:
     def sketch(self):  # sketch csv
         print("Plot Initialized")
         index = 1
-        figure(num=None, figsize=(4, 3), dpi=1024, facecolor='w', edgecolor='k')
-        #max_value = int(max(self.row_L_measurement))
-        #min_value = int(min(self.row_L_measurement))
-        #print("min: " + str(min_value) + " max: " + str(max_value))
+        figure(num=None, figsize=(8, 12), dpi=1024, facecolor='w', edgecolor='k')
 
-        ax1 = plt.subplot(211)
+        ax1 = plt.subplot(411)
         ax1.plot(self.time_values, self.row_L_measurement)
-        ax1.set_title('Left Leg Measurement')
-        ax2 = plt.subplot(212, sharex=ax1)
-        ax2.set_title('Right Leg Measurement')
+        ax1.set_title("Left Leg Measurement")
+        ax2 = plt.subplot(412)
+        ax2.set_title("Right Leg Measurement")
         ax2.plot(self.time_values, self.row_R_measurement)
-
+        ax3 = plt.subplot(413)
+        ax3.plot(self.time_values, self.row_L_angle)
+        ax3.set_title("Left Leg Angle")
+        ax4 = plt.subplot(414)
+        ax4.plot(self.time_values, self.row_L_angle)
+        ax4.set_title("Right Leg Angle")
         #plt.ylim(400, 600)
 
         plt.xlabel("Time(ms)")
-        plt.ylabel("Measurements")
         plot_name = str(index) + "-measurement.png"
         plt.savefig(plot_name)
         print(plot_name + " is saved")
+
+
 
 
 
