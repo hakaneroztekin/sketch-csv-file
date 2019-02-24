@@ -70,9 +70,13 @@ class App:
     def sketch(self):  # sketch csv
         print("Plot Initialized")
         index = 1
-        figure(num=None, figsize=(16, 9), dpi=1024, facecolor='w', edgecolor='k')
+        figure(num=None, dpi=1024, facecolor='w', edgecolor='k')
+        #max_value = int(max(self.row_L_measurement))
+        #min_value = int(min(self.row_L_measurement))
+        #print("min: " + str(min_value) + " max: " + str(max_value))
+        #plt.ylim(min_value,max_value)
         plt.plot(self.time_values, self.row_L_measurement)
-        #plt.scatter(self.time_values, self.row_R_measurement)
+
         plt.xlabel('Time')
         plt.ylabel("Measurements")
         plot_name = str(index) + "-measurement.png"
