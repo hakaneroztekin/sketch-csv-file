@@ -25,11 +25,20 @@ class App:
     # Csv file content:
     # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
     time_values = []
+
     row_L_measurement = []
     row_L_angle = []
+
     row_R_measurement = []
     row_R_angle = []
+
     file_count = 0
+
+    #Limits to identify outliers
+    measurement_min = 400
+    measurement_max = 600
+    angle_min = 0
+    angle_max = 180
 
     def __init__(self):
         self.file_count = int(input("Which file do you want to read? "))
@@ -65,8 +74,9 @@ class App:
                 line_count += 1
             print(f'Processed {line_count} lines.')
 
-            print("The file will be sketched.")
+
             self.sketch(i)
+
 
 
 
@@ -84,16 +94,14 @@ class App:
         ax3.plot(self.time_values, self.row_L_angle, color='r')
         ax3.set_title("Left Leg Angle")
         ax4 = plt.subplot(414)
-        ax4.plot(self.time_values, self.row_L_angle, color='b')
+        ax4.plot(self.time_values, self.row_R_angle, color='b')
         ax4.set_title("Right Leg Angle")
         #plt.ylim(400, 600)
 
         plt.xlabel("Time(ms)")
         plot_name = "measurement"+ str(file_no) + ".png"
         plt.savefig(plot_name)
-        fig, ax = plt.subplots()
-        fig.clf()
-        plt.close(fig)
+
 
         print(plot_name + " is saved")
 
