@@ -18,11 +18,22 @@ class App:
     def __init__(self):
         x = []
         y = []
-        # read_csv()
+        self.read_csv()
         # sketch()
 
 
-    # def read_csv(self): #read csv
+    def read_csv(self): #read csv
+        with open('csv_files/measurement1.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    #print(f'Column names are {", ".join(row)}')
+                    line_count += 1
+                else:
+                    #print(f'\t time:{row[0]}  Lcap: {row[1]} Ldeg: {row[2]}.')
+                    line_count += 1
+            #print(f'Processed {line_count} lines.')
 
 
 
