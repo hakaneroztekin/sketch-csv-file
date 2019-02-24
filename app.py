@@ -28,15 +28,16 @@ class App:
     row_L_angle = []
     row_R_measurement = []
     row_R_angle = []
+    file_count = 0
 
     def __init__(self):
+        self.file_count = input("How many files do you want to read? ")
         self.read_all_csv()
 
 
     def read_all_csv(self):
-        input_val = input("How many files do you want to read? ")
         i = 1
-        while i <= int(input_val):
+        while i <= int(self.file_count):
             self.read_csv(i)
             i += 1
             print("All files are read")
