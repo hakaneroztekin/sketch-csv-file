@@ -22,7 +22,6 @@ import csv
 class App:
     # Csv file content:
     # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
-    column_names = ["L_Measurement", "L_Angle", "R_Measurement", "R_Angle"]
     time_values = []
     row_L_measurement = []
     row_L_angle = []
@@ -70,14 +69,13 @@ class App:
     def sketch(self):  # sketch csv
         print("Scatterplot Initialized")
         index = 1
-        while index <= self.file_count:
-            plt.scatter(self.time_values, self.row_L_measurement)
-            plt.xlabel('Time')
-            plt.ylabel(self.column_names[index])
-            plot_name = str(index) + "-" + self.column_names[index] + ".png"
-            plt.savefig(plot_name)
-            print(plot_name + " is saved")
-            index += 1
+        plt.scatter(self.time_values, self.row_L_measurement)
+        plt.scatter(self.time_values, self.row_R_measurement)
+        plt.xlabel('Time')
+        plt.ylabel("Measurements")
+        plot_name = str(index) + "-measurement.png"
+        plt.savefig(plot_name)
+        print(plot_name + " is saved")
 
 
 
