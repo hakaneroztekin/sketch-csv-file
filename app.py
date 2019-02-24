@@ -15,3 +15,23 @@ from bs4 import BeautifulSoup
 from requests import get
 from requests.exceptions import RequestException
 
+class App:
+    def __init__(self):
+        x = []
+        y = []
+        # read_csv()
+        # sketch()
+
+
+    # def read_csv(self): #read csv
+
+
+
+    # def sketch(self): #sketch csv
+
+
+
+
+
+if __name__ == '__main__':
+    App()
