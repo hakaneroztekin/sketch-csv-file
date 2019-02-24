@@ -32,16 +32,15 @@ class App:
     file_count = 0
 
     def __init__(self):
-        self.file_count = int(input("How many files do you want to read? "))
-        self.read_all_csv()
+        self.file_count = int(input("Which file do you want to read? "))
+        #self.read_all_csv()
+        self.read_csv(self.file_count)
 
-
-    def read_all_csv(self):
-        i = 1
-        while i <= self.file_count:
-            self.read_csv(i)
-            i += 1
-            print("All files are read")
+    #def read_all_csv(self):
+    #    i = 1
+    #    while i <= self.file_count:
+    #        self.read_csv(i)
+    #        i += 1
 
     def read_csv(self, i):  # read csv
         zero_time = 0 # the starting time value; will be used to normalize the time values
@@ -67,13 +66,12 @@ class App:
             print(f'Processed {line_count} lines.')
 
             print("The file will be sketched.")
-            self.sketch()
+            self.sketch(i)
 
 
 
-    def sketch(self):  # sketch csv
-        print("Plot Initialized")
-        index = 1
+    def sketch(self, file_no):  # sketch csv
+        print("Plotting... (" + str(file_no) + "/" + str(self.file_count) + ")")
         figure(num=None, figsize=(8, 12), dpi=1024, facecolor='w', edgecolor='k')
 
         ax1 = plt.subplot(411)
@@ -91,13 +89,16 @@ class App:
         #plt.ylim(400, 600)
 
         plt.xlabel("Time(ms)")
-        plot_name = str(index) + "-measurement.png"
+        plot_name = "measurement"+ str(file_no) + ".png"
         plt.savefig(plot_name)
+        fig, ax = plt.subplots()
+        fig.clf()
+        plt.close(fig)
+
         print(plot_name + " is saved")
 
-
-
-
+        if file_no == self.file_count:
+            print("Plotting is completed.")
 
 
 
