@@ -6,6 +6,12 @@
 # Sketch the csv files.
 # Beautify the graph if needed.
 
+# The current csv data characteristics:
+# The files contain sensor measurements
+# Each column has its specific meaning
+# So, csv reading will be specialized for that aim
+# Though, csv reader can be modified for different type of csv files.
+
 import re
 from contextlib import closing
 import matplotlib.pyplot as plt
