@@ -74,13 +74,17 @@ class App:
     def sketch(self):  # sketch csv
         print("Plot Initialized")
         index = 1
-        figure(num=None, figsize=(32, 16), dpi=1024, facecolor='w', edgecolor='k')
+        figure(num=None, figsize=(4, 3), dpi=1024, facecolor='w', edgecolor='k')
         #max_value = int(max(self.row_L_measurement))
         #min_value = int(min(self.row_L_measurement))
         #print("min: " + str(min_value) + " max: " + str(max_value))
 
-        plt.plot(self.time_values, self.row_L_measurement, 'r')
-        plt.plot(self.time_values, self.row_R_measurement, 'b')
+        ax1 = plt.subplot(211)
+        ax1.plot(self.time_values, self.row_L_measurement)
+        ax1.set_title('Left Leg Measurement')
+        ax2 = plt.subplot(212, sharex=ax1)
+        ax2.set_title('Right Leg Measurement')
+        ax2.plot(self.time_values, self.row_R_measurement)
 
         #plt.ylim(400, 600)
 
