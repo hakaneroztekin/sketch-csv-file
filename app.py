@@ -8,14 +8,13 @@
 
 import re
 from contextlib import closing
-
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 from bs4 import BeautifulSoup
-from requests import get
-from requests.exceptions import RequestException
+import csv
 
 class App:
+    source = ""
     def __init__(self):
         x = []
         y = []
