@@ -22,8 +22,11 @@ import csv
 class App:
     # Csv file content:
     # Time, L:Measurement, L:ConvertedCap, L:Angle, R:Measurement, R:ConvertedCap, R:Angle
-    row = []
-    column = ["Time", "L:Measurement", "L:ConvertedCap", "L:Angle", "R:Measurement", "R:ConvertedCap", "R:Angle"]
+    time_values = []
+    row_L_measurement = []
+    row_L_angle = []
+    row_R_measurement = []
+    row_R_angle = []
 
     def __init__(self):
         self.read_all_csv()
@@ -32,7 +35,7 @@ class App:
     def read_all_csv(self):
         input_val = input("How many files do you want to read? ")
         i = 1
-        while i < int(input_val):
+        while i <= int(input_val):
             self.read_csv(i)
             i += 1
             print("All files are read")
@@ -49,17 +52,27 @@ class App:
 
             for row in csv_reader:
                     #print(f'\t time:{row[0]}  Lcap: {row[1]} Ldeg: {row[2]}.')
-                    self.row.append(row)
+                    self.time_values.append(row[0])
+                    self.row_L_measurement.append(row[1])
+
                     line_count += 1
             print(f'Processed {line_count} lines.')
 
             print("The file will be sketched.")
+            self.sketch()
 
 
 
-    # def sketch(self):  # sketch csv
+    def sketch(self):  # sketch csv
 
+        #results = sm.OLS(self.row_1, sm.add_constant(self.time_values)).fit()
 
+        #print("X size:", len(self.row[0]), "Y size:", len(self.row[1]))
+
+        plt.scatter(self.time_values, self.row_L_measurement)
+        plt.xlabel('Time')
+        plt.ylabel('Measurements')
+        plt.show()
 
 
 
