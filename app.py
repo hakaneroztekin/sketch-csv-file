@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 from bs4 import BeautifulSoup
 import csv
+from matplotlib.pyplot import figure
 
 class App:
     # Csv file content:
@@ -67,10 +68,11 @@ class App:
 
 
     def sketch(self):  # sketch csv
-        print("Scatterplot Initialized")
+        print("Plot Initialized")
         index = 1
-        plt.scatter(self.time_values, self.row_L_measurement)
-        plt.scatter(self.time_values, self.row_R_measurement)
+        figure(num=None, figsize=(16, 9), dpi=1024, facecolor='w', edgecolor='k')
+        plt.plot(self.time_values, self.row_L_measurement)
+        #plt.scatter(self.time_values, self.row_R_measurement)
         plt.xlabel('Time')
         plt.ylabel("Measurements")
         plot_name = str(index) + "-measurement.png"
