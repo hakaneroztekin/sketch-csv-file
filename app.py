@@ -82,7 +82,7 @@ class App:
 
     def sketch(self, file_no):  # sketch csv
         print("Plotting... (" + str(file_no) + "/" + str(self.file_count) + ")")
-        figure(num=None, figsize=(16000, 9000), dpi=10, facecolor='w', edgecolor='k')
+        figure(num=None, figsize=(256, 16), dpi=1024, facecolor='w', edgecolor='k')
 
         ax1 = plt.subplot(411)
         ax1.plot(self.time_values, self.row_L_measurement, color='r')
@@ -99,7 +99,7 @@ class App:
         #plt.ylim(400, 600)
 
         plt.xlabel("Time(ms)")
-        plot_name = "measurement"+ str(file_no)
+        plot_name = "measurement" + str(file_no)
         plt.savefig(plot_name + ".svg")
 
 
